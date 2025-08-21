@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyce Doe - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-gradient: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+            --secondary-color: #333;
+            --text-color-light: #fff;
+            --text-color-dark: #333;
+            --skill-bar-color-html: linear-gradient(90deg, #2196f3, #0d47a1);
+            --skill-bar-color-css: linear-gradient(90deg, #4caf50, #1b5e20);
+            --skill-bar-color-js: linear-gradient(90deg, #ffeb3b, #f57f17);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: var(--text-color-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--primary-gradient);
+            color: var(--text-color-light);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.5);
+            object-fit: cover;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        .profile-details h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-details p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            color: var(--text-color-light);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.2) rotate(45deg);
+        }
+
+        .btn-cv {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--text-color-light);
+        }
+
+        .btn-cv:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-hire {
+            background: var(--text-color-light);
+            color: var(--primary-gradient);
+            font-weight: 700;
+        }
+
+        .btn-hire:hover {
+            background: var(--primary-gradient);
+            color: var(--text-color-light);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-hire::after {
+            content: '🚀';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%) scale(0);
+            transition: transform 0.4s ease;
+        }
+
+        .btn-hire:hover::after {
+            transform: translateY(-50%) scale(1);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            border-bottom: 3px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        h2:hover::after {
+            width: 100px;
+        }
+
+        .about-me p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .skills-list {
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        .skill-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-level {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1.5s ease-in-out;
+            position: relative;
+        }
+        
+        .skill-level::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: skill-glow 2s infinite ease-in-out;
+        }
+
+        @keyframes skill-glow {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .skill-html {
+            width: 90%;
+            background: var(--skill-bar-color-html);
+        }
+
+        .skill-css {
+            width: 85%;
+            background: var(--skill-bar-color-css);
+        }
+
+        .skill-js {
+            width: 80%;
+            background: var(--skill-bar-color-js);
+        }
+
+        .experience-list {
+            list-style: none;
+        }
+
+        .experience-item {
+            display: flex;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .experience-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 2rem;
+            color: var(--primary-gradient);
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .company-name {
+            color: #666;
+            font-style: italic;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .company-name:hover {
+            color: #ff6a00;
+            text-decoration: underline;
+        }
+        
+        .job-description {
+            color: #555;
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .job-description-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #ddd;
+            transition: border-left 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .job-description-box:hover {
+            border-left: 5px solid #ff6a00;
+            background: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #aaa;
+            font-size: 0.9rem;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 1s ease-out;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header">
+            <div class="profile-info">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Joyce Doe" class="profile-img">
+                <div class="profile-details">
+                    <h1>Joyce Doe</h1>
+                    <p>Graphic Designer & Web Developer</p>
+                </div>
+            </div>
+            <div class="header-buttons">
+                <a href="#" class="btn btn-cv">Download CV</a>
+                <a href="#" class="btn btn-hire">Hire Me</a>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="section about-me">
+                <h2>About Me</h2>
+                <p>Hello! I'm Joyce Doe. I am passionate about UI/UX design and Web Design. I am a skilled Front-end Developer and master of Graphic Design tools such as Photoshop and Sketch.</p>
+            </div>
+
+            <div class="section skills">
+                <h2>Professional Skills</h2>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <h3>HTML</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-html"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <h3>CSS</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-css"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Javascript</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-js"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section experience">
+                <h2>Working Experience</h2>
+                <ul class="experience-list">
+                    <li class="experience-item">
+                        <div class="job-description-box">
+                            <div class="job-title">Front-end Developer at <span class="company-name">Creative Agency</span></div>
+                            <div class="job-description">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
+                        </div>
+                    </li>
+                    <li class="experience-item">
+                        <div class="job-description-box">
+                            <div class="job-title">Back-end Developer at <span class="company-name">Super Agency</span></div>
+                            <div class="job-description">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
+                        </div>
+                    </li>
+                    <li class="experience-item">
+                        <div class="job-description-box">
+                            <div class="job-title">Front-end Developer at <span class="company-name">Creative Agency</span></div>
+                            <div class="job-description">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
+                        </div>
+                    </li>
+                    <li class="experience-item">
+                        <div class="job-description-box">
+                            <div class="job-title">Front-end Developer at <span class="company-name">Creative Agency</span></div>
+                            <div class="job-description">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            &copy; 2022 Joyce Doe
+        </div>
+
+    </div>
+
+</body>
+</html>
